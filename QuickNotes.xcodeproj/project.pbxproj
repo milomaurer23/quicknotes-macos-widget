@@ -1,0 +1,217 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		00002001 /* QuickNotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00002000 /* QuickNotesView.swift */; };
+		00002003 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00002002 /* Assets.xcassets */; };
+		00002005 /* SwiftData in Frameworks */ = {isa = PBXBuildFile; productName = SwiftData; };
+		00002006 /* DailyNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00002100 /* DailyNote.swift */; };
+		00002007 /* QuickNotesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00002007 /* QuickNotesApp.swift */; };
+		00002008 /* QuickNotesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00002008 /* QuickNotesViewModel.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		00002000 /* QuickNotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickNotesView.swift; sourceTree = "<group>"; };
+		00002002 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		00002007 /* QuickNotesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickNotesApp.swift; sourceTree = "<group>"; };
+		00002100 /* DailyNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyNote.swift; sourceTree = "<group>"; };
+		00002008 /* QuickNotesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickNotesViewModel.swift; sourceTree = "<group>"; };
+		00002009 /* QuickNotes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickNotes.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		00002010 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00002005 /* SwiftData in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		00002011 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				00002009 /* QuickNotes.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		00002012 /* QuickNotes */ = {
+			isa = PBXGroup;
+			children = (
+				00002007 /* QuickNotesApp.swift */,
+				00002000 /* QuickNotesView.swift */,
+				00002008 /* QuickNotesViewModel.swift */,
+				00002100 /* DailyNote.swift */,
+				00002002 /* Assets.xcassets */,
+			);
+			path = QuickNotes;
+			sourceTree = "<group>";
+		};
+		00002013 /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				00002012 /* QuickNotes */,
+				00002011 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		00002014 /* QuickNotes */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 00002015 /* Build configuration list for PBXNativeTarget "QuickNotes" */;
+			buildPhases = (
+				00002016 /* Sources */,
+				00002010 /* Frameworks */,
+				00002017 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = QuickNotes;
+			productName = QuickNotes;
+			productReference = 00002009 /* QuickNotes.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		00002018 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					00002014 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+				};
+			};
+			buildConfigurationList = 00002019 /* Build configuration list for PBXProject "QuickNotes" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 00002013 /* Root */;
+			productRefGroup = 00002011 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				00002014 /* QuickNotes */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		00002017 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00002003 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		00002016 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00002007 /* QuickNotesApp.swift in Sources */,
+				00002001 /* QuickNotesView.swift in Sources */,
+				00002006 /* DailyNote.swift in Sources */,
+				00002008 /* QuickNotesViewModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		0000201A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				MACOSX_DEPLOYMENT_TARGET = 13.5;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		0000201B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				MACOSX_DEPLOYMENT_TARGET = 13.5;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+		0000201C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.5;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vibecodingprojects.quicknotes;
+				PRODUCT_NAME = QuickNotes;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		0000201D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.5;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vibecodingprojects.quicknotes;
+				PRODUCT_NAME = QuickNotes;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		00002019 /* Build configuration list for PBXProject "QuickNotes" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0000201A /* Debug */,
+				0000201B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		00002015 /* Build configuration list for PBXNativeTarget "QuickNotes" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0000201C /* Debug */,
+				0000201D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+	};
+	rootObject = 00002018 /* Project object */;
+}
