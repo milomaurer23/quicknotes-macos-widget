@@ -3,7 +3,7 @@ import SwiftData
 
 @main
 struct QuickNotesApp: App {
-    @StateObject var viewModel = QuickNotesViewModel()
+    @State var viewModel = QuickNotesViewModel()
 
     let modelContainer: ModelContainer
 
@@ -18,10 +18,12 @@ struct QuickNotesApp: App {
     var body: some Scene {
         MenuBarExtra(content: {
             QuickNotesView()
-                .environmentObject(viewModel)
+                .environment(viewModel)
                 .modelContainer(modelContainer)
         }, label: {
             Image(systemName: "note.text")
         })
+        // The default .menu style renders content as menu items, so the TextEditor can't take input.
+        .menuBarExtraStyle(.window)
     }
 }

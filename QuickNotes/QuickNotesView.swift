@@ -2,10 +2,20 @@ import SwiftUI
 import SwiftData
 
 struct QuickNotesView: View {
-    @EnvironmentObject var viewModel: QuickNotesViewModel
+    @Environment(QuickNotesViewModel.self) var viewModel
     @Environment(\.modelContext) var modelContext
-    @State private var loaded = false
     @State private var draftText: String = ""
+    /// The day draftText was loaded for, so a reopen keeps unsaved typing but a new day starts fresh.
+    @State private var draftDay: Date?
+
+    private var canSave: Bool {
+        !draftText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+            && draftText != viewModel.todayNote?.text
+    }
+
+    private var isSaved: Bool {
+        !draftText.isEmpty && draftText == viewModel.todayNote?.text
+    }
 
     var body: some View {
         VStack(spacing: 12) {
@@ -22,19 +32,19 @@ struct QuickNotesView: View {
 
             // Save button
             Button(action: {
-                if !draftText.trimmingCharacters(in: .whitespaces).isEmpty {
-                    viewModel.saveOrCreateTodayNote(text: draftText, with: modelContext)
-                    draftText = ""
-                }
+                guard canSave else { return }
+                viewModel.saveOrCreateTodayNote(text: draftText, with: modelContext)
+                draftDay = Calendar.current.startOfDay(for: .now)
             }) {
-                Text("Save Reflection")
+                Text(isSaved ? "Saved" : "Save Reflection")
                     .frame(maxWidth: .infinity)
                     .padding(8)
-                    .background(Color.blue)
+                    .background(canSave ? Color.blue : Color.gray)
                     .foregroundColor(.white)
                     .cornerRadius(4)
             }
             .buttonStyle(.plain)
+            .disabled(!canSave)
 
             Divider()
 
@@ -43,13 +53,13 @@ struct QuickNotesView: View {
                 .font(.caption)
                 .fontWeight(.semibold)
 
-            if viewModel.recentNotes().isEmpty {
-                Text("No notes yet")
+            if viewModel.recentNotes.isEmpty {
+                Text("No notes in the past 7 days")
                     .font(.caption2)
                     .foregroundColor(.secondary)
             } else {
                 VStack(spacing: 8) {
-                    ForEach(viewModel.recentNotes(), id: \.id) { note in
+                    ForEach(viewModel.recentNotes, id: \.id) { note in
                         VStack(alignment: .leading, spacing: 4) {
                             HStack {
                                 Text(note.dateFormatted)
@@ -80,12 +90,11 @@ struct QuickNotesView: View {
         .padding(12)
         .frame(width: 300)
         .onAppear {
-            if !loaded {
-                viewModel.loadNotes(from: modelContext)
-                if let today = viewModel.todayNote {
-                    draftText = today.text
-                }
-                loaded = true
+            viewModel.loadNotes(from: modelContext)
+            let today = Calendar.current.startOfDay(for: .now)
+            if draftDay != today {
+                draftText = viewModel.todayNote?.text ?? ""
+                draftDay = today
             }
         }
     }
@@ -93,5 +102,6 @@ struct QuickNotesView: View {
 
 #Preview {
     QuickNotesView()
-        .environmentObject(QuickNotesViewModel())
+        .environment(QuickNotesViewModel())
+        .modelContainer(for: DailyNote.self, inMemory: true)
 }

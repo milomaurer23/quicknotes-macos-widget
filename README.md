@@ -11,6 +11,8 @@ Daily reflection notes that live in your menu bar. Punch out, quick notes about 
 
 ## Build & Run
 
+Requires macOS 14 (Sonoma) or later.
+
 1. Open `QuickNotes.xcodeproj`
 2. Cmd+R to build & run
 3. Menu bar icon appears (notepad symbol)
