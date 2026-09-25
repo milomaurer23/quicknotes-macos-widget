@@ -1,8 +1,9 @@
 import Foundation
 import SwiftData
 
+@MainActor
 @Observable
-class QuickNotesViewModel: NSObject {
+class QuickNotesViewModel {
     var notes: [DailyNote] = []
     var todayNote: DailyNote?
 
@@ -17,7 +18,8 @@ class QuickNotesViewModel: NSObject {
     }
 
     func saveOrCreateTodayNote(text: String, with context: ModelContext) {
-        if let existing = todayNote {
+        // todayNote goes stale if the app stays open past midnight; never write into a previous day's note.
+        if let existing = todayNote, existing.isToday {
             existing.text = text
         } else {
             let newNote = DailyNote(date: .now, text: text)
@@ -34,7 +36,11 @@ class QuickNotesViewModel: NSObject {
         loadNotes(from: context)
     }
 
-    func recentNotes() -> [DailyNote] {
-        Array(notes.prefix(7))
+    /// Notes from the 7 days before today. Today's note lives in the editor.
+    var recentNotes: [DailyNote] {
+        let calendar = Calendar.current
+        let startOfToday = calendar.startOfDay(for: .now)
+        guard let cutoff = calendar.date(byAdding: .day, value: -7, to: startOfToday) else { return [] }
+        return notes.filter { $0.date >= cutoff && $0.date < startOfToday }
     }
 }
