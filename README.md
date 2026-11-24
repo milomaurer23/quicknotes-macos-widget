@@ -7,7 +7,7 @@ Daily reflection notes that live in your menu bar. Punch out, quick notes about 
 - **Today's reflection** — Text editor for daily thoughts/wins
 - **Past 7 days** — Quick-scroll through recent reflections
 - **One-click save** — Save to local database instantly
-- **Delete notes** — Remove old entries with one tap
+- **Delete notes** — Click ✕, then confirm with "Delete"
 
 ## Build & Run
 
@@ -27,4 +27,4 @@ Perfect companion to **Timekeeper**:
 
 ## Data
 
-Notes stored in `~/Library/Application Support/com.vibecodingprojects.quicknotes/` via SwiftData.
+Notes are stored with SwiftData's default configuration in `~/Library/Application Support/default.store` (plus `default.store-shm` / `default.store-wal`). The app isn't sandboxed, so this is the shared Application Support folder, not an app-specific one.

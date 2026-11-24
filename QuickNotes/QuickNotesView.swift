@@ -7,6 +7,9 @@ struct QuickNotesView: View {
     @State private var draftText: String = ""
     /// The day draftText was loaded for, so a reopen keeps unsaved typing but a new day starts fresh.
     @State private var draftDay: Date?
+    /// Note whose ✕ was tapped once; a second tap on "Delete" confirms. Kept inline because
+    /// alerts presented from a MenuBarExtra window can dismiss the window itself.
+    @State private var pendingDeleteID: UUID?
 
     private var canSave: Bool {
         !draftText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
@@ -66,14 +69,31 @@ struct QuickNotesView: View {
                                     .font(.caption)
                                     .fontWeight(.semibold)
                                 Spacer()
-                                Button(action: {
-                                    viewModel.deleteNote(note, with: modelContext)
-                                }) {
-                                    Image(systemName: "xmark")
-                                        .font(.caption)
-                                        .foregroundColor(.red)
+                                if pendingDeleteID == note.id {
+                                    Button("Cancel") {
+                                        pendingDeleteID = nil
+                                    }
+                                    .font(.caption)
+                                    .buttonStyle(.plain)
+                                    .foregroundColor(.secondary)
+                                    Button("Delete") {
+                                        pendingDeleteID = nil
+                                        viewModel.deleteNote(note, with: modelContext)
+                                    }
+                                    .font(.caption)
+                                    .fontWeight(.semibold)
+                                    .buttonStyle(.plain)
+                                    .foregroundColor(.red)
+                                } else {
+                                    Button(action: {
+                                        pendingDeleteID = note.id
+                                    }) {
+                                        Image(systemName: "xmark")
+                                            .font(.caption)
+                                            .foregroundColor(.red)
+                                    }
+                                    .buttonStyle(.plain)
                                 }
-                                .buttonStyle(.plain)
                             }
                             Text(note.text)
                                 .font(.caption2)
@@ -90,6 +110,7 @@ struct QuickNotesView: View {
         .padding(12)
         .frame(width: 300)
         .onAppear {
+            pendingDeleteID = nil
             viewModel.loadNotes(from: modelContext)
             let today = Calendar.current.startOfDay(for: .now)
             if draftDay != today {
